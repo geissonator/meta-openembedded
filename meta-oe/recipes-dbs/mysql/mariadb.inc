@@ -170,6 +170,9 @@ do_install() {
     fi
     if ${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'true', 'false', d)}; then
         mv ${D}/lib/security ${D}/${libdir}
+        if [ "`ls -A ${D}/lib`" = "" ]; then
+            rm -rf ${D}/lib
+        fi
     fi
 }
 
